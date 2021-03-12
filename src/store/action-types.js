@@ -1,0 +1,3 @@
+export const USER_SET_USER_TOKEN = "USER_SET_USER_TOKEN";
+
+export const TOGGLE_COLLAPSE = "TOGGLE_COLLAPSE";

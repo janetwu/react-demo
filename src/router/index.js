@@ -1,0 +1,32 @@
+import React from "react";
+import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { getUserInfo } from "@/store/actions";
+import Layout from "@/views/layout";
+import Login from "@/views/login";
+import Test from "@/views/test";
+class Router extends React.Component {
+  render() {
+    const { token, } = this.props;
+    return (
+      <HashRouter>
+        <Switch>
+          <Route exact path="/login" component={Login} />
+          {/* <Route exact path="/test" component={Test} /> */}
+          <Route
+            path="/"
+            render={() => {
+              if (!token) {
+                return <Redirect to="/login" />;
+              } else {
+                return <Layout />;
+              }
+            }}
+          />
+        </Switch>
+      </HashRouter>
+    );
+  }
+}
+
+export default connect((state) => state.user)(Router);
